@@ -29,7 +29,7 @@
 
     function resetGame() {
       guessesLeft = 7;
-      guesses = "";
+      guesses = [];
     };
 
     document.onkeyup = function(event) {
@@ -39,11 +39,16 @@
       console.log(userGuess);
         if (userGuess === computerGuess) {
           wins++;
-          function resetGame();
+          resetGame();
         }
         else {
             guesses.push(userGuess);
             guessesLeft--;
+              if (guessesLeft === 0) {
+                losses++;
+                resetGame();
+              }
+
         }
         winsText.textContent = "wins: " + wins;
         lossesText.textContent = "losses: " + losses;
@@ -51,11 +56,7 @@
         guessesSoFar.textContent = "guesses so far: " + guesses;
        
     }
-
-    if (guessesLeft === 0) {
-      losses++;
-      function resetGame();
-    }
+    
   </script>
 
 </body>
